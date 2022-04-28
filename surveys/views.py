@@ -4,25 +4,25 @@ from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
 # Create your views here.
 from django.views.generic import FormView
-from surveys.forms import SurveyForm
+from surveys.forms import DrugForm
 from collections import Counter
 
-from surveys.models import Survey
+from surveys.models import Drug
 
-class SurveyFillView(TemplateView, FormView):
+class AddDrugView(TemplateView, FormView):
     success_url = reverse_lazy('filled_success')
     template_name = "survey_form.html"
 
     def get_form_class(self):
-        return SurveyForm
+        return DrugForm
 
     def form_valid(self, form):
         form.instance.save()
-        return super(SurveyFillView, self).form_valid(form)
+        return super(AddDrugView, self).form_valid(form)
 
 
     def get_context_data(self, **kwargs):
-        context = super(SurveyFillView, self).get_context_data(**kwargs)
+        context = super(AddDrugView, self).get_context_data(**kwargs)
         return context
 
 
@@ -37,15 +37,15 @@ class SurveyFilledView(TemplateView):
 def unique_counter(queryset,field_name):
     return Counter([getattr(i, field_name) for i in queryset])
 
-class SurveyStatsView(TemplateView):
+class CurrentDragsStatsView(TemplateView):
     template_name = "survey_stats.html"
 
     def get_context_data(self, **kwargs):
-        context = super(SurveyStatsView, self).get_context_data(**kwargs)
+        context = super(CurrentDragsStatsView, self).get_context_data(**kwargs)
 
-        survey_answers = Survey.objects.all()
-        context['unique_sample_string'] = unique_counter(survey_answers, 'sample_text')
-        context['bool_distribution'] = unique_counter(survey_answers, 'sample_bool')
+        survey_answers = Drug.objects.all()
+        context['unique_sample_string'] = dict(unique_counter(survey_answers, 'sample_text'))
+        context['all_drugs'] =  Drug.objects.all()
         context['total_count'] = survey_answers.count()
         return context
 

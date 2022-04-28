@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from surveys.models import Survey
+from surveys.models import Drug
 
 # Register your models here.
 
 
 
-@admin.register(Survey)
-class SurveytAdmin(admin.ModelAdmin):
+@admin.register(Drug)
+class DrugtAdmin(admin.ModelAdmin):
     pass

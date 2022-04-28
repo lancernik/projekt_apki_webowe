@@ -5,7 +5,7 @@ from django.db import models
 
 
 
-class Survey(models.Model):
-    sample_text = models.CharField(max_length=1024, blank=True, null=True)
-    sample_bool = models.BooleanField(blank=True, null=True, default=False)
+class Drug(models.Model):
+    sample_text = models.CharField(max_length=1024, blank=True, null=True, verbose_name="Nazwa leku")
+    sample_bool = models.BooleanField(blank=True, null=True, default=False, verbose_name="Czy lek jest ważny?")
 

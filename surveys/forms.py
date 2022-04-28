@@ -4,13 +4,13 @@ import django
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.admin.helpers import ActionForm
 
-from surveys.models import Survey
+from surveys.models import Drug
 
-class SurveyForm(forms.ModelForm):
+class DrugForm(forms.ModelForm):
     """
     Form to create and edit template instance. 
     """
 
     class Meta:
-        model = Survey
+        model = Drug
         fields = ["sample_text", "sample_bool"]

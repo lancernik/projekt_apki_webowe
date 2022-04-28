@@ -1,12 +1,34 @@
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-<h1>STATS</h1>
+<div class="m-3 card card-body col-4">
+    <h1>STATS</h1>
 
-Total filled surveys count: {{total_count}}
-<br>
-Rozkład danej formularza 1: {{unique_sample_string}} 
-<br>
+    Liczba leków w systemie: {{total_count}}
+    <br>
+    {% for drug,count in unique_sample_string.items %}
 
-Rozkład danej formularza 2: {{bool_distribution}}
+        <div class="row m-1">
+            <div class="col">Nazwa leku: <b>{{drug}} </b> </div> 
+            <div class="badge badge-primary col">Ilość leku: {{count}} </div>  
+        </div>
+    {% endfor %}
+    <br>
+</div>
+
+<table class="m-3 card card-body col-6">
+<tr>
+<th>Nazwa leku</th>
+<th>Czy lek jest ważny?</th>
+<th>Data ważności</th>
+</tr>
+{% for drug in all_drugs %}
+<tr>
+    <td>{{drug.sample_text}}</td>
+    <td>{{drug.sample_bool}}</td>
+    <td>{{drug}}</td>
+</tr>
+{% endfor %}
 
 
+</table>
