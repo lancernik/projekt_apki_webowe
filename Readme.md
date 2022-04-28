@@ -1,6 +1,7 @@
 # domowaApteczka
 
-### Installation setupInstalation setup
+### Installation setup
+
 ```python
 pip install -r requirements.txt
 ```
