@@ -10,7 +10,7 @@ from collections import Counter
 from surveys.models import Drug
 
 class AddDrugView(TemplateView, FormView):
-    success_url = reverse_lazy('filled_success')
+    success_url = reverse_lazy('drugs_stats')
     template_name = "survey_form.html"
 
     def get_form_class(self):
